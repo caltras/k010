@@ -70,8 +70,8 @@ function Application(cfg){
     };
     self.run  = function(){
         configure();
-        return self.app.listen(self.config.PORT,self.config.IP, () => {
-            console.log('Listening on hostname %s  port %s. ENV: %s', self.config.IP,self.config.PORT, self.config.NODE_ENV);
+        return self.app.listen(self.config.PORT, () => {
+            console.log('Listening on port %s. ENV: %s', self.config.PORT, self.config.NODE_ENV);
         });
     };
 }
