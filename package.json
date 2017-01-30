@@ -1,0 +1,38 @@
+{
+  "name": "k010-main",
+  "version": "1.0.0",
+  "description": "Integração entre backend e frontend",
+  "main": "run.js",
+  "scripts": {
+    "start": "nodemon -e js,json --exec node run.js --nocrankshaft --nolazy --nodead_code_elimination --debug-brk=15454",
+    "test": "istanbul cover _mocha"
+  },
+  "bin": {
+    "k010": "run.js"
+  },
+  "keywords": [
+    "kenoby"
+  ],
+  "author": "Claudio Traspadini Oliveira",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.1",
+    "koa": "^2.0.0-alpha.7",
+    "koa-bodyparser": "^2.3.0",
+    "koa-bouncer": "^6.0.0",
+    "koa-compress": "^2.0.0",
+    "koa-static": "^2.0.0",
+    "kue": "^0.11.5",
+    "lodash": "^4.17.4",
+    "mailgun": "^0.5.0",
+    "mongoose": "^4.7.8"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^2.0.1"
+  }
+}

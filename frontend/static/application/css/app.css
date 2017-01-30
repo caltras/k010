@@ -1,0 +1,17 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.required::after{
+    content: '*';
+    color:#fc7474;
+}
+.animate-rotate{
+    animation: rotation 2s linear infinite !important;
+    -webkit-animation: rotation 2s linear infinite !important;
+}
+@-webkit-keyframes rotation {
+    100% { -moz-transform: rotate(360deg); transform:rotate(360deg); }
+}
+@keyframes rotation {
+    100% { -moz-transform: rotate(360deg); transform:rotate(360deg); }
+}

@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>Amigo secreto</title>
+    </head>
+    <body >
+        <link rel="stylesheet" href="vendor/bootstrap//dist/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="vendor/bootstrap//dist/css/bootstrap-theme.min.css" type="text/css" />
+        <link rel="stylesheet" href="application/css/app.css" type="text/css" />
+        <div class="container-fluid" ng-cloak>
+            <div ng-controller="indexController as indexCtrl" class="row">
+                <h1 class="col-md-12 ">
+                    {{::indexCtrl.title}}
+                    <small>Sorteio dos amigos.</small>
+                </h1>
+                <div ng-controller="pessoaController as pessoaCtrl" class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form name="pessoaForm" ng-submit="pessoaCtrl.salvar(); pessoaCtrl.disabledSubmit=true">
+                                <div class="form-group">
+                                    <label for="nome" class="required">Nome</label>
+                                    <input type="text" required class="form-control" id="nome" placeholder="Nome" ng-model="pessoaCtrl.form.nome">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="required">E-mail</label>
+                                    <input type="email" required class="form-control" id="email" placeholder="fulano@fulano.com.br" ng-model="pessoaCtrl.form.email">
+                                </div>
+                                <button class="btn btn-default" ng-disabled="!pessoaForm.$valid || pessoaCtrl.disabledSubmit">
+                                    <i class="glyphicon glyphicon-floppy-save"></i>
+                                    Salvar
+                                </button>
+                                <button type="button" class="btn btn-default" ng-click="pessoaCtrl.limpar()">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                    Limpar
+                                </button>
+                                <button type="button" class="btn btn-default" ng-click="pessoaCtrl.sortear()" ng-disabled="!pessoaCtrl.pessoas.length || pessoaCtrl.processing">
+                                    <i class="glyphicon glyphicon-refresh" ng-class="{'animate-rotate':pessoaCtrl.processing}"></i>
+                                    Sortear
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-md-12">
+                            <h5>Quantidade de pessoas para o sorteio: {{ pessoaCtrl.pessoas.length }}</h5>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-striped table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th><th>E-mail</th><th>Amigo</th><th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-if="pessoaCtrl.pessoas.length===0">
+                                        <td colspan="3">Não há registros</td>
+                                    </tr>
+                                    <tr ng-repeat="pessoa in pessoaCtrl.pessoas">
+                                        <td style="width:300px">{{pessoa.nome}}</td>
+                                        <td >{{pessoa.email}}</td>
+                                        <!--<td >{{pessoa.amigo ? 'Amigo sorteado': ' - '}}</td>-->
+                                        <td >{{pessoa.amigo.nome}}</td>
+                                        <td style="width:150px">
+                                            <button type="button" class="btn btn-default" ng-click="pessoaCtrl.editar(pessoa._id)">
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-default" ng-click="pessoaCtrl.deletar(pessoa._id)">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="vendor/angular/angular.min.js"></script>
+        <script src="vendor/angular-resource/angular-resource.min.js"></script>
+        
+        <script src="application/pessoa/pessoa-controller.js"></script>
+        <script src="application/pessoa/pessoa-service.js"></script>
+        
+        <script src="application/_modules.js"></script>
+        
+        <script src="application/js/app.js"></script>
+        
+    </body>
+
+</html>
