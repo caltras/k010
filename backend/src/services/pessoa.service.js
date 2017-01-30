@@ -24,37 +24,58 @@ openReceiver.then(function(conn) {
       }
     });
   });
-}).catch(console.warn);
+}).catch(function(err){
+    console.log("Não foi possível conectar na fila");
+    console.log(config.CLOUDAMQP_URL);
+    console.warn(err);
+});
 
 var processaSorteio = function(pessoas){
-  saveAll(pessoas);
-  enviarEmail(pessoas);
+    try{
+        saveAll(pessoas);
+        enviarEmail(pessoas);
+    }catch(e){
+        console.log(e);
+    }
 };
 var enviarEmail = function(pessoas){
     _.each(pessoas,function(p){
         var email = p.email;
         var amigo = p.amigo;
         if(amigo){
-            mg.sendText(email, [p.nome+' <'+p.email+'>'],
-              'K010 - Amigo Secreto',
-              'O seu amigo secreto é :'+amigo.nome+' <'+amigo.email+'>',
-              'noreply@amigosecreto.com', {},
-              function(err) {
-                if (err) console.log('Oh noes: ' + err);
-                else     console.log('Success');
-            });
+            try{
+                mg.sendText(email, [p.nome+' <'+p.email+'>'],
+                  'K010 - Amigo Secreto',
+                  'O seu amigo secreto é :'+amigo.nome+' <'+amigo.email+'>',
+                  'noreply@amigosecreto.com', {},
+                  function(err) {
+                    if (err) {
+                        console.log('Oh noes: ' + err);
+                    }else{     
+                        console.log('Success');
+                    }
+                });
+            }catch(e){
+                console.log(e);
+            }
         }
     });
 };
 var saveAll = function(pessoas){
     _.each(pessoas,function(p){
-        Pessoa.findOne({ _id: p._id }, function (err, doc){
-            if(!err){
-                doc.amigo = p.amigo;
-                doc.markModified('amigo');
-                doc.save();
-            }
-        });
+        try{
+            Pessoa.findOne({ _id: p._id }, function (err, doc){
+                if(!err){
+                    doc.amigo = p.amigo;
+                    doc.markModified('amigo');
+                    doc.save();
+                }else{
+                    console.log(err);
+                }
+            });
+        }catch(e){
+            console.log(e);
+        }
     });
 };
 
@@ -114,7 +135,11 @@ module.exports = {
           return ch.assertQueue(queue).then(function(ok) {
             return ch.sendToQueue(queue, new Buffer(JSON.stringify(pessoas)));
           });
-        }).catch(console.warn);
+        }).catch(function(err){
+            console.log("Não foi possível enviar dados para a fila");
+            console.log(config.CLOUDAMQP_URL);
+            console.warn(err);
+        });
         
         this.body="Sorteado";
     }
