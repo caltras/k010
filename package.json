@@ -10,6 +10,9 @@
   "bin": {
     "k010": "run.js"
   },
+  "engines": {
+    "node": "4.6.1"
+  },
   "keywords": [
     "kenoby"
   ],
