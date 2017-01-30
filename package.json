@@ -4,6 +4,7 @@
   "description": "Integração entre backend e frontend",
   "main": "run.js",
   "scripts": {
+    "start" : "node run.js",
     "test": "istanbul cover _mocha"
   },
   "bin": {
