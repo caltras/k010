@@ -4,7 +4,7 @@
   "description": "Integração entre backend e frontend",
   "main": "run.js",
   "scripts": {
-    "start" : "node run.js",
+    "start": "node run.js",
     "test": "istanbul cover _mocha"
   },
   "bin": {
@@ -24,6 +24,7 @@
     "koa-bodyparser": "^2.3.0",
     "koa-bouncer": "^6.0.0",
     "koa-compress": "^2.0.0",
+    "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
     "kue": "^0.11.5",
     "lodash": "^4.17.4",
