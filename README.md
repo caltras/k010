@@ -29,3 +29,7 @@ basta executar o comando:
 
 para executar o projeto e  `npm test` para execução dos testes unitários. 
 
+a versão em execução está em 
+
+http://k010.herokuapp.com
+
