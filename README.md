@@ -12,7 +12,15 @@ Após baixar o código, deve-se executar o seguinte comando:
 
 Isto fará baixar e instalar todas as dependências do projeto. 
 
-Após a instalação com sucesso, basta executar o comando: 
+Após a instalação com sucesso e configurada as variáveis de ambiente, 
+
+CLOUDAMQP_URL = url do serviço de filas CloudAMQ
+QUEUE_PESSOA_UPDATE = nome da fila (pessoa_update) utilizada para fazer o processamento paralelo do sorteio.
+MAILGUN_API = url do mailgun para envio de emails
+MONGO_URL = url do banco de dados
+
+
+basta executar o comando: 
 
 `node run.js` ou `npm start` 
 
