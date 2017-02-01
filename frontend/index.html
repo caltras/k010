@@ -55,8 +55,7 @@
                                     <tr ng-repeat="pessoa in pessoaCtrl.pessoas">
                                         <td style="width:300px">{{pessoa.nome}}</td>
                                         <td >{{pessoa.email}}</td>
-                                        <!--<td >{{pessoa.amigo ? 'Amigo sorteado': ' - '}}</td>-->
-                                        <td >{{pessoa.amigo.nome}}</td>
+                                        <td >{{pessoa.amigo ? 'Amigo sorteado': ' - '}}</td>
                                         <td style="width:150px">
                                             <button type="button" class="btn btn-default" ng-click="pessoaCtrl.editar(pessoa._id)">
                                                 <i class="glyphicon glyphicon-pencil"></i>
